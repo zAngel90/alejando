@@ -1,0 +1,685 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f5f5f5;
+}
+
+/* Añadir estilos para la barra de navegación */
+.nav-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
+  background-color: #0066cc;
+  color: white;
+  display: flex;
+  align-items: center;
+  padding: 0 15px;
+  z-index: 100;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.nav-back-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.back-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+#current-screen-title {
+  margin-left: 15px;
+  font-size: 1.2em;
+  flex-grow: 1;
+  text-align: center;
+}
+
+/* Ajustar el contenedor principal para dar espacio a la barra de navegación */
+.app-container {
+  max-width: 430px;
+  margin: 0 auto;
+  height: 100vh;
+  padding-top: 60px; /* Espacio para la barra de navegación */
+}
+
+.screen {
+  background-color: #fff;
+  height: calc(100% - 60px);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto; /* Permitir scroll en pantallas con mucho contenido */
+}
+
+/* Pantalla de inicio */
+#home-screen {
+  background-color: #0066cc;
+  color: white;
+  text-align: center;
+}
+
+#home-screen h1 {
+  margin-top: 60px;
+  font-size: 2.2em;
+  line-height: 1.2;
+  margin-bottom: 40px;
+}
+
+.icon-container {
+  margin: 40px 0;
+}
+
+.hacker-icon {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.password-box {
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 10px 20px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 20px auto;
+  width: fit-content;
+}
+
+.lock-icon {
+  width: 20px;
+  height: 20px;
+  filter: brightness(0) invert(1);
+}
+
+.start-btn {
+  background-color: #ff6600;
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 25px;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 8px rgba(255, 102, 0, 0.3);
+}
+
+.start-btn:hover {
+  background-color: #ff8533;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(255, 102, 0, 0.4);
+}
+
+.start-btn:active {
+  transform: translateY(1px);
+  box-shadow: 0 2px 4px rgba(255, 102, 0, 0.4);
+}
+
+.back-btn {
+  background-color: #0066cc;
+  margin-top: 10px;
+}
+
+.back-btn:hover {
+  background-color: #0077e6;
+}
+
+/* Menú principal */
+#menu-screen {
+  background-color: white;
+}
+
+#menu-screen h2 {
+  color: #0066cc;
+  margin-bottom: 40px;
+  font-size: 2em;
+}
+
+.menu-options {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.menu-btn {
+  background-color: #f0f5ff;
+  border: none;
+  padding: 15px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-size: 1.1em;
+  color: #333;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.3s ease;
+}
+
+.menu-btn:hover {
+  background-color: #e0ebff;
+}
+
+.menu-btn img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Pantalla de categorías */
+#categories-screen {
+  background-color: #0066cc;
+  color: white;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  width: 100%;
+  margin: 20px 0;
+}
+
+.category-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 15px;
+  text-align: center;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-card img {
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.category-card h3 {
+  color: #0066cc;
+  margin-bottom: 5px;
+}
+
+.category-card p {
+  color: #666;
+  font-size: 0.9em;
+}
+
+/* Pantalla de lecciones */
+#lessons-screen {
+  background-color: #0066cc;
+  color: white;
+}
+
+#lessons-screen h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.lesson-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  width: 100%;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.lesson-content {
+  text-align: center;
+}
+
+.category-icon {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.lesson-card h3 {
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.lesson-card p {
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.lesson-steps {
+  text-align: left;
+  margin: 20px 0;
+  padding-left: 20px;
+}
+
+.lesson-steps li {
+  color: #333;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  position: relative;
+  padding-left: 25px;
+}
+
+.lesson-steps li:before {
+  content: "✓";
+  position: absolute;
+  left: 0;
+  color: #0066cc;
+  font-weight: bold;
+}
+
+/* Pantalla de prueba */
+#test-screen {
+  background-color: #0066cc;
+  color: white;
+}
+
+#test-screen h2 {
+  font-size: 2em;
+  margin-bottom: 30px;
+}
+
+.question-container {
+  width: 100%;
+}
+
+.question-container h3 {
+  text-align: center;
+  margin-bottom: 30px;
+  font-size: 1.2em;
+  line-height: 1.4;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.option-btn {
+  background-color: white;
+  border: 2px solid #e0e0e0;
+  padding: 15px 20px;
+  border-radius: 12px;
+  font-size: 1em;
+  color: #333;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-left: 50px;
+}
+
+.option-btn:before {
+  content: "";
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #0066cc;
+  border-radius: 50%;
+}
+
+.option-btn:hover {
+  background-color: #f0f5ff;
+  border-color: #0066cc;
+}
+
+.option-btn.selected {
+  background-color: #e3f2fd;
+  border-color: #2196f3;
+}
+
+.option-btn.selected:before {
+  background-color: #0066cc;
+  box-shadow: inset 0 0 0 4px white;
+}
+
+.option-btn.correct {
+  background-color: #e8f5e9;
+  border-color: #4caf50;
+}
+
+.option-btn.incorrect {
+  background-color: #ffebee;
+  border-color: #f44336;
+}
+
+.option-btn:disabled {
+  cursor: not-allowed;
+}
+
+/* Sección de progreso */
+.progress-section {
+  background-color: #f0f5ff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 20px;
+  width: 100%;
+}
+
+.progress-stats {
+  color: #333;
+  font-size: 0.9em;
+}
+
+.category-progress {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+}
+
+.category-progress:last-child {
+  border-bottom: none;
+}
+
+.category-progress h4 {
+  color: #0066cc;
+  margin-bottom: 5px;
+}
+
+.total-progress {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 2px solid #0066cc;
+}
+
+.total-progress h4 {
+  color: #0066cc;
+  margin-bottom: 5px;
+}
+
+/* Pantalla de progreso */
+#progress-screen {
+  background-color: #0066cc;
+  color: white;
+}
+
+.progress-details {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+}
+
+.progress-card {
+  background-color: white;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+}
+
+.progress-card h3 {
+  color: #333;
+  margin-bottom: 15px;
+}
+
+#detailed-progress {
+  color: #666;
+}
+
+/* Estilos para mensajes y niveles */
+.message {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 15px 30px;
+  border-radius: 25px;
+  color: white;
+  font-weight: bold;
+  z-index: 1000;
+  animation: slideDown 0.3s ease-out;
+}
+
+.message.success {
+  background-color: #4caf50;
+}
+
+.message.error {
+  background-color: #f44336;
+}
+
+.level-up-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.level-up-message {
+  background-color: white;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  animation: scaleIn 0.3s ease-out;
+}
+
+.level-up-message h3 {
+  color: #2196f3;
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.level-up-message p {
+  color: #333;
+  margin: 10px 0;
+}
+
+/* Estilos para la sección de progreso */
+.level-info {
+  background-color: #fff;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.level-info h3 {
+  color: #2196f3;
+  margin-bottom: 10px;
+}
+
+.level-progress {
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  height: 20px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.level-progress-bar {
+  height: 100%;
+  background-color: #2196f3;
+  transition: width 0.3s ease;
+}
+
+.level-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+}
+
+.level-icon {
+  font-size: 24px;
+  margin-right: 10px;
+}
+
+/* Animaciones */
+@keyframes slideDown {
+  from {
+    transform: translate(-50%, -100%);
+    opacity: 0;
+  }
+  to {
+    transform: translate(-50%, 0);
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Ajustar las pantallas para dispositivos móviles */
+@media (max-width: 430px) {
+  .app-container {
+    width: 100%;
+  }
+
+  .categories-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .category-card {
+    padding: 10px;
+  }
+
+  .category-card img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .category-card h3 {
+    font-size: 0.9em;
+  }
+
+  .category-card p {
+    font-size: 0.8em;
+  }
+}
+
+/* Estilos para la pantalla de progreso mejorada */
+.progress-overview {
+  background-color: #f0f5ff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+.progress-subtitle {
+  color: #333;
+  margin: 15px 0;
+  width: 100%;
+  text-align: left;
+}
+
+.categories-progress-detail {
+  width: 100%;
+}
+
+.category-progress-item {
+  background-color: #f0f5ff;
+  border-radius: 12px;
+  padding: 15px;
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.category-progress-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.category-mini-icon {
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+}
+
+.category-status {
+  margin-left: auto;
+  padding: 3px 8px;
+  border-radius: 10px;
+  font-size: 0.8em;
+}
+
+.category-status.completed {
+  background-color: #4caf50;
+  color: white;
+}
+
+.category-status.pending {
+  background-color: #ff9800;
+  color: white;
+}
+
+.category-progress-bar {
+  background-color: #e0e0e0;
+  border-radius: 10px;
+  height: 10px;
+  margin: 10px 0;
+  overflow: hidden;
+}
+
+.category-progress-fill {
+  height: 100%;
+  background-color: #2196f3;
+}
+
+.category-progress-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9em;
+  color: #666;
+}
+
+/* Animaciones para transiciones suaves */
+.screen {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

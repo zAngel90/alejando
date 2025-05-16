@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Prevención de Ataques de Ingeniería Social</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <div class="nav-bar">
+            <button id="back-button" class="nav-back-btn" onclick="goBack()">
+                <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Atrás" class="back-icon">
+            </button>
+            <h3 id="current-screen-title">Inicio</h3>
+        </div>
+        <!-- Pantalla de inicio -->
+        <div class="screen" id="home-screen">
+            <h1>PREVENCIÓN<br>DE ATAQUES<br>DE INGENIERÍA<br>SOCIAL</h1>
+            <div class="icon-container">
+                <img src="https://cdn-icons-png.flaticon.com/512/4489/4489655.png" alt="Hacker Icon" class="hacker-icon">
+                <div class="password-box">
+                    <span class="dots">•••••</span>
+                    <img src="https://cdn-icons-png.flaticon.com/512/483/483408.png" alt="Lock Icon" class="lock-icon">
+                </div>
+            </div>
+            <button class="start-btn" onclick="showMenu()">COMENZAR</button>
+        </div>
+
+        <!-- Menú principal -->
+        <div class="screen" id="menu-screen" style="display: none;">
+            <h2>MENÚ</h2>
+            <div class="menu-options">
+                <button class="menu-btn" onclick="showCategories()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" alt="Lessons">
+                    Aprender
+                </button>
+                <button class="menu-btn" onclick="showProgress()">
+                    <img src="https://cdn-icons-png.flaticon.com/512/8003/8003392.png" alt="Progress">
+                    Progreso
+                </button>
+                <button class="menu-btn">
+                    <img src="https://cdn-icons-png.flaticon.com/512/126/126472.png" alt="Settings">
+                    Configuración
+                </button>
+            </div>
+            <div id="progress-section" class="progress-section"></div>
+        </div>
+
+        <!-- Pantalla de categorías -->
+        <div class="screen" id="categories-screen" style="display: none;">
+            <h2>CATEGORÍAS</h2>
+            <div class="categories-grid">
+                <div class="category-card" onclick="showLessons('phishing')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" alt="Phishing">
+                    <h3>Phishing</h3>
+                    <p>Ataques por correo electrónico</p>
+                </div>
+                <div class="category-card" onclick="showLessons('vishing')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/126/126341.png" alt="Vishing">
+                    <h3>Vishing</h3>
+                    <p>Ataques por llamada telefónica</p>
+                </div>
+                <div class="category-card" onclick="showLessons('smishing')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Smishing">
+                    <h3>Smishing</h3>
+                    <p>Ataques por mensaje de texto</p>
+                </div>
+                <div class="category-card" onclick="showLessons('pretexting')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Pretexting">
+                    <h3>Pretexting</h3>
+                    <p>Creación de escenarios falsos</p>
+                </div>
+                <div class="category-card" onclick="showLessons('baiting')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1548/1548682.png" alt="Baiting">
+                    <h3>Baiting</h3>
+                    <p>Ataques con señuelos</p>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showMenu()">VOLVER</button>
+        </div>
+
+        <!-- Pantalla de lecciones -->
+        <div class="screen" id="lessons-screen" style="display: none;">
+            <h2>LECCIONES</h2>
+            <div class="lesson-card">
+                <div class="lesson-content">
+                    <!-- El contenido se llenará dinámicamente -->
+                </div>
+                <button class="start-btn" onclick="completeLesson()">CONTINUAR</button>
+            </div>
+            <button class="back-btn" onclick="showCategories()">VOLVER</button>
+        </div>
+
+        <!-- Pantalla de prueba -->
+        <div class="screen" id="test-screen" style="display: none;">
+            <h2>PRUEBA</h2>
+            <div class="question-container">
+                <!-- Las preguntas se llenarán dinámicamente -->
+            </div>
+            <button class="back-btn" onclick="showCategories()">VOLVER</button>
+        </div>
+
+        <!-- Pantalla de progreso -->
+        <div class="screen" id="progress-screen" style="display: none;">
+            <h2>PROGRESO</h2>
+            <div class="progress-details">
+                <div class="progress-card">
+                    <h3>Tu Avance</h3>
+                    <div id="detailed-progress"></div>
+                </div>
+            </div>
+            <button class="back-btn" onclick="showMenu()">VOLVER AL MENÚ</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
