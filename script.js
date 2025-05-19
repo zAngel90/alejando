@@ -14,281 +14,339 @@ let currentQuestion = 0
 let userPoints = 0
 let score = 0 // Declare the score variable here
 const progress = {
-  categories: {
-    phishing: { completed: false, score: 0 },
-    vishing: { completed: false, score: 0 },
-    smishing: { completed: false, score: 0 },
+    categories: {
+        phishing: { completed: false, score: 0 },
+        vishing: { completed: false, score: 0 },
+        smishing: { completed: false, score: 0 },
     pretexting: { completed: false, score: 0 },
-    baiting: { completed: false, score: 0 },
   },
   totalScore: 0,
   currentLevel: 1,
 }
 
+// Variables de autenticación
+let currentUser = null;
+let users = JSON.parse(localStorage.getItem('users')) || [];
+
 // Categorías y lecciones
 const categories = [
-  {
+    {
     id: "phishing",
     name: "Phishing",
-    icon: "https://cdn-icons-png.flaticon.com/512/2138/2138508.png",
-    lessons: [
-      {
-        title: "Introducción al Phishing",
-        content:
-          "El phishing es un tipo de ataque donde los criminales intentan engañarte para que reveles información sensible a través de correos electrónicos.",
-        steps: [
-          "Los atacantes suelen hacerse pasar por empresas legítimas",
-          "Utilizan tácticas de urgencia para presionar",
-          "Solicitan información personal o financiera",
-          "Pueden incluir enlaces maliciosos",
+    icon: "phishing.png",
+        lessons: [
+            {
+                title: "¿Qué es el Phishing?",
+                content: "El phishing es un método de engaño en línea que utiliza técnicas de ingeniería social para hacer que las personas entreguen información personal, financiera o confidencial. Los atacantes se hacen pasar por organizaciones legítimas a través de correos electrónicos, sitios web, mensajes o plataformas digitales.",
+                steps: [
+                    "Email Phishing: Es el tipo más tradicional. Se basa en enviar correos electrónicos falsos.",
+                    "Ortografía o gramática deficiente",
+                    "Solicitudes de información sensible (contraseñas, tarjetas)",
+                    "Ofertas demasiado buenas para ser verdad",
+                    "Remitente extraño o con errores",
+                    "Urgencia o amenazas implícitas"
+                ],
+            },
+            {
+                title: "Ejemplo de Phishing",
+                content: "De: soporte@micr0soft-servicio.com\nAsunto: Acción urgente requerida\nCuerpo: Estimado cliente, detectamos actividad sospechosa. Haga clic en el siguiente enlace para verificar su cuenta.",
+                steps: [
+                    "El dominio es falso (con un 0 en vez de 'o')",
+                    "Se crea urgencia",
+                    "Se pide hacer clic en un enlace no verificado",
+                ],
+            },
         ],
-      },
-      {
-        title: "Señales de Advertencia",
-        content: "Aprende a identificar las señales comunes de un correo de phishing.",
-        steps: [
-          "Errores gramaticales y ortográficos",
-          "Direcciones de correo sospechosas",
-          "Solicitudes urgentes de acción",
-          "Ofertas demasiado buenas para ser verdad",
+        questions: [
+            {
+                question: "¿Cuál es el objetivo principal del phishing por correo electrónico?",
+                options: [
+                    "Instalar software legítimo",
+                    "Robar datos personales o financieros",
+                    "Eliminar archivos del sistema",
+                    "Bloquear correos legítimos"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Qué archivo adjunto es más probable que contenga malware en un correo de phishing?",
+                options: [
+                    ".png",
+                    ".docm",
+                    ".txt",
+                    ".mp3"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál de los siguientes es un indicio común de un correo electrónico de phishing?",
+                options: [
+                    "Un diseño profesional",
+                    "Un mensaje urgente que pide acción inmediata",
+                    "Un remitente conocido con dirección válida",
+                    "Ortografía y gramática perfectas"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Qué técnica consiste en falsificar la dirección del remitente para que parezca confiable?",
+                options: [
+                    "Ingeniería inversa",
+                    "Spoofing",
+                    "Whaling",
+                    "Ransomware"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Qué se recomienda hacer antes de hacer clic en un enlace dentro de un correo?",
+                options: [
+                    "Descargar primero el archivo",
+                    "Confirmar con el remitente",
+                    "Pasar el cursor sobre el enlace para ver la URL real",
+                    "Actualizar el navegador"
+                ],
+                correctAnswer: 2
+            }
+        ]
+    },
+    {
+        id: "vishing",
+        name: "Vishing",
+        icon: "https://cdn-icons-png.flaticon.com/512/126/126341.png",
+        lessons: [
+            {
+                title: "¿Qué es el Vishing?",
+                content: "El vishing (voice phishing) es una forma de ingeniería social en la que el atacante utiliza llamadas telefónicas para engañar a la víctima y obtener información confidencial, como contraseñas, datos bancarios o códigos de verificación.",
+                steps: [
+                    "El atacante llama haciéndose pasar por una figura de autoridad",
+                    "Utiliza el miedo, la urgencia o la confianza",
+                    "Pide información privada o dirige a acciones inseguras",
+                    "Nunca proporciones datos personales por teléfono si no iniciaste la llamada"
+                ]
+            },
+            {
+                title: "Ejemplo de Vishing",
+                content: "Recibes una llamada de un supuesto representante del banco: 'Hola, le llamamos del Departamento de Seguridad del Banco Nacional. Hemos detectado un intento sospechoso de retiro de dinero desde su cuenta.'",
+                steps: [
+                    "Tono de urgencia: te hacen sentir que tu dinero está en peligro",
+                    "Suplantación de entidad: dicen ser del banco",
+                    "Solicitud de datos sensibles: piden información confidencial",
+                    "Desconfía de llamadas inesperadas que pidan información urgente"
+                ]
+            }
         ],
-      },
-    ],
-    questions: [
-      {
-        question: "¿Cuál es una señal de advertencia de un correo electrónico de phishing?",
-        options: [
-          "Uso de un lenguaje urgente",
-          "Dirección de correo confiable",
-          "Gramática y ortografía perfectas",
-          "Enlaces a sitios web oficiales",
+        questions: [
+            {
+                question: "¿Qué es el vishing?",
+                options: [
+                    "Un ataque por mensajes SMS",
+                    "Una técnica de hackeo físico",
+                    "Un intento de obtener información personal mediante llamadas telefónicas",
+                    "Un ataque informático mediante virus"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Qué técnica común se utiliza en el vishing?",
+                options: [
+                    "Enviar enlaces maliciosos",
+                    "Suplantar números de teléfono para parecer legítimos",
+                    "Escanear redes WiFi",
+                    "Enviar archivos adjuntos peligrosos"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál de estas frases es típica en una llamada de vishing?",
+                options: [
+                    "¿Cómo está su día hoy?",
+                    "Su cuenta será suspendida si no verifica sus datos ahora mismo.",
+                    "Gracias por su compra.",
+                    "Nos gustaría hacerle una encuesta."
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Qué debes hacer si sospechas que una llamada es fraudulenta?",
+                options: [
+                    "Proporcionar información solo si el número es local",
+                    "Seguir las instrucciones rápidamente",
+                    "Colgar y llamar a la institución por sus canales oficiales",
+                    "Grabar la llamada y subirla a redes sociales"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Por qué el vishing es efectivo?",
+                options: [
+                    "Porque utiliza malware avanzado",
+                    "Porque explota vulnerabilidades de software",
+                    "Porque utiliza la voz para generar confianza y presión psicológica",
+                    "Porque requiere altos conocimientos técnicos"
+                ],
+                correctAnswer: 2
+            }
+        ]
+    },
+    {
+        id: "smishing",
+        name: "Smishing",
+        icon: "texto.png",
+        lessons: [
+            {
+                title: "¿Qué es el Smishing?",
+                content: "El smishing (SMS phishing) es una técnica de ingeniería social en la que los atacantes envían mensajes de texto (SMS) falsos con el fin de engañar al usuario para que proporcione datos personales, acceda a enlaces maliciosos o descargue software malicioso.",
+                steps: [
+                    "El atacante envía un SMS simulando ser una entidad confiable",
+                    "El mensaje contiene enlaces maliciosos o solicitudes de información",
+                    "Si el usuario cae, puede entregar información privada o descargar malware",
+                    "No hagas clic en enlaces de mensajes sospechosos"
+                ]
+            },
+            {
+                title: "Ejemplo de Smishing",
+                content: "BBVA: Detectamos actividad sospechosa en tu cuenta. Por seguridad, verifica tu identidad aquí: http://bbva-seguridad-info.com",
+                steps: [
+                    "El dominio web es falso (no es el sitio oficial de BBVA)",
+                    "Usa lenguaje urgente y te presiona a actuar",
+                    "El mensaje llegó por SMS, canal que el banco normalmente no utiliza",
+                    "Nunca proporciones datos personales por SMS"
+                ]
+            }
         ],
-        correctAnswer: 0,
-      },
-      {
-        question: "¿Qué debes hacer si recibes un correo sospechoso?",
-        options: [
-          "Hacer clic en los enlaces para verificar",
-          "Responder pidiendo más información",
-          "Reportar como spam y eliminar",
-          "Reenviar a todos tus contactos",
+        questions: [
+            {
+                question: "¿Qué es el smishing?",
+                options: [
+                    "Un ataque por llamada telefónica",
+                    "Un tipo de malware que borra archivos",
+                    "Un intento de fraude a través de mensajes SMS",
+                    "Un ataque mediante correo electrónico"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Cuál es una señal típica de un mensaje de smishing?",
+                options: [
+                    "Enlace con dominio oficial",
+                    "Redacción profesional",
+                    "Enlace acortado o sospechoso",
+                    "Mensaje enviado desde tu propio número"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Qué buscan obtener los atacantes con el smishing?",
+                options: [
+                    "Archivos multimedia",
+                    "Información personal o financiera",
+                    "Acceso a redes WiFi",
+                    "Licencias de software"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Qué acción NO se recomienda ante un mensaje sospechoso?",
+                options: [
+                    "Eliminar el mensaje",
+                    "Contactar a la empresa desde su sitio oficial",
+                    "Hacer clic en el enlace para verificar",
+                    "Reportar el número como spam"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Qué medida ayuda a prevenir el smishing?",
+                options: [
+                    "Ignorar todos los SMS",
+                    "Descargar todo lo que se reciba",
+                    "Usar apps de detección de SMS maliciosos",
+                    "Responder con 'NO' al mensaje"
+                ],
+                correctAnswer: 2
+            }
+        ]
+    },
+    {
+        id: "pretexting",
+        name: "Pretexting",
+        icon: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
+        lessons: [
+            {
+                title: "¿Qué es el Pretexting?",
+                content: "El pretexting es una técnica de ingeniería social en la que el atacante crea una historia falsa (pretexto) para engañar a la víctima y hacer que revele información confidencial o realice una acción específica. A diferencia del phishing o smishing, el pretexting se basa más en la construcción de confianza y en la manipulación psicológica mediante una historia convincente.",
+                steps: [
+                    "Suplantación de identidad profesional",
+                    "Pretextos legales o administrativos",
+                    "Falsas situaciones de emergencia",
+                    "Uso de datos reales para parecer creíbles"
+                ]
+            },
+            {
+                title: "Ejemplo de Pretexting",
+                content: "Un empleado recibe una llamada: 'Hola, soy Javier del equipo de tecnología. Estamos haciendo mantenimiento al sistema de acceso remoto. ¿Podrías confirmarme tu usuario y contraseña para verificar la configuración?'",
+                steps: [
+                    "El pretexto suena técnico y creíble",
+                    "No se debería solicitar contraseñas por teléfono",
+                    "Usa lenguaje profesional para ganar confianza",
+                    "Se presenta como alguien interno de la organización"
+                ]
+            }
         ],
-        correctAnswer: 2,
-      },
-    ],
-  },
-  {
-    id: "vishing",
-    name: "Vishing",
-    icon: "https://cdn-icons-png.flaticon.com/512/126/126341.png",
-    lessons: [
-      {
-        title: "¿Qué es el Vishing?",
-        content: "El vishing es una forma de phishing que utiliza llamadas telefónicas para engañar a las víctimas.",
-        steps: [
-          "Los atacantes se hacen pasar por representantes de empresas",
-          "Utilizan números de teléfono falsificados",
-          "Crean un sentido de urgencia",
-          "Solicitan información sensible por teléfono",
-        ],
-      },
-      {
-        title: "Protección contra Vishing",
-        content: "Aprende a protegerte de las llamadas fraudulentas.",
-        steps: [
-          "Nunca des información personal por teléfono",
-          "Verifica la identidad del llamante",
-          "No confíes en el ID de llamada",
-          "Reporta las llamadas sospechosas",
-        ],
-      },
-    ],
-    questions: [
-      {
-        question: "¿Qué es una característica común del vishing?",
-        options: [
-          "Uso de correos electrónicos",
-          "Llamadas telefónicas fraudulentas",
-          "Mensajes de texto",
-          "Redes sociales",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        question: "¿Qué debes hacer si recibes una llamada sospechosa?",
-        options: [
-          "Proporcionar la información solicitada",
-          "Colgar y reportar el número",
-          "Transferir la llamada a un compañero",
-          "Grabar la conversación",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
-  {
-    id: "smishing",
-    name: "Smishing",
-    icon: "https://cdn-icons-png.flaticon.com/512/3059/3059518.png",
-    lessons: [
-      {
-        title: "Entendiendo el Smishing",
-        content: "El smishing es el phishing a través de mensajes de texto (SMS).",
-        steps: [
-          "Mensajes que parecen de empresas legítimas",
-          "Enlaces acortados o sospechosos",
-          "Solicitudes de información personal",
-          "Ofertas o alertas urgentes",
-        ],
-      },
-      {
-        title: "Prevención de Smishing",
-        content: "Cómo protegerte de los mensajes de texto fraudulentos.",
-        steps: [
-          "No hagas clic en enlaces de SMS desconocidos",
-          "Verifica el número del remitente",
-          "No respondas a mensajes sospechosos",
-          "Reporta los mensajes fraudulentos",
-        ],
-      },
-    ],
-    questions: [
-      {
-        question: "¿Qué caracteriza al smishing?",
-        options: [
-          "Correos electrónicos fraudulentos",
-          "Mensajes de texto maliciosos",
-          "Llamadas telefónicas",
-          "Mensajes en redes sociales",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        question: "¿Qué debes hacer con un SMS sospechoso?",
-        options: [
-          "Hacer clic en el enlace para verificar",
-          "Responder al mensaje",
-          "Eliminar y reportar",
-          "Reenviar a tus contactos",
-        ],
-        correctAnswer: 2,
-      },
-    ],
-  },
-  {
-    id: "pretexting",
-    name: "Pretexting",
-    icon: "https://cdn-icons-png.flaticon.com/512/1077/1077114.png",
-    lessons: [
-      {
-        title: "¿Qué es el Pretexting?",
-        content: "El pretexting implica crear un escenario falso para obtener información.",
-        steps: [
-          "Creación de una identidad falsa",
-          "Construcción de una historia creíble",
-          "Ganar la confianza de la víctima",
-          "Solicitud gradual de información",
-        ],
-      },
-      {
-        title: "Identificación del Pretexting",
-        content: "Cómo reconocer y evitar el pretexting.",
-        steps: [
-          "Desconfía de historias elaboradas",
-          "Verifica la identidad de las personas",
-          "No compartas información sensible",
-          "Reporta situaciones sospechosas",
-        ],
-      },
-    ],
-    questions: [
-      {
-        question: "¿Qué caracteriza al pretexting?",
-        options: ["Envío de correos masivos", "Creación de escenarios falsos", "Uso de malware", "Ataques DDoS"],
-        correctAnswer: 1,
-      },
-      {
-        question: "¿Cómo puedes protegerte del pretexting?",
-        options: [
-          "Compartiendo información personal",
-          "Verificando la identidad de las personas",
-          "Confiar en todas las historias",
-          "No hacer preguntas",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
-  {
-    id: "baiting",
-    name: "Baiting",
-    icon: "https://cdn-icons-png.flaticon.com/512/1548/1548682.png",
-    lessons: [
-      {
-        title: "¿Qué es el Baiting?",
-        content:
-          "El baiting o cebo es una técnica de ingeniería social donde los atacantes utilizan un señuelo para despertar la curiosidad o codicia de la víctima.",
-        steps: [
-          "Uso de dispositivos USB infectados dejados en lugares públicos",
-          "Ofertas demasiado buenas para ser verdad",
-          "Descargas gratuitas de software, música o películas",
-          "Regalos o premios falsos que requieren información personal",
-        ],
-      },
-      {
-        title: "Cómo protegerse del Baiting",
-        content: "Aprende a identificar y evitar las trampas de baiting.",
-        steps: [
-          "Nunca conectes dispositivos USB desconocidos",
-          "Desconfía de ofertas demasiado buenas para ser verdad",
-          "Descarga software solo de fuentes oficiales",
-          "No proporciones información personal a cambio de regalos o premios",
-        ],
-      },
-      {
-        title: "Casos reales de Baiting",
-        content: "Ejemplos de ataques de baiting que han tenido éxito en el mundo real.",
-        steps: [
-          "Operación Buckshot Yankee: ataque al Pentágono mediante USB infectados",
-          "Campaña 'Free Movie Download' que distribuía malware",
-          "Falsos cupones de descuento que robaban datos personales",
-          "USBs infectados distribuidos en conferencias de seguridad",
-        ],
-      },
-    ],
-    questions: [
-      {
-        question: "¿Cuál es una táctica común de baiting?",
-        options: [
-          "Llamadas telefónicas fraudulentas",
-          "Dejar dispositivos USB infectados en lugares públicos",
-          "Enviar correos electrónicos de phishing",
-          "Crear perfiles falsos en redes sociales",
-        ],
-        correctAnswer: 1,
-      },
-      {
-        question: "¿Qué debes hacer si encuentras una memoria USB desconocida?",
-        options: [
-          "Conectarla para ver su contenido",
-          "Llevarla a un técnico para que la revise",
-          "No conectarla y desecharla o entregarla a seguridad",
-          "Formatearla antes de usarla",
-        ],
-        correctAnswer: 2,
-      },
-      {
-        question: "¿Por qué el baiting es efectivo?",
-        options: [
-          "Porque utiliza tecnología avanzada",
-          "Porque explota la curiosidad o codicia humana",
-          "Porque es difícil de detectar técnicamente",
-          "Porque los atacantes son muy persistentes",
-        ],
-        correctAnswer: 1,
-      },
-    ],
-  },
+        questions: [
+            {
+                question: "¿Qué es el pretexting?",
+                options: [
+                    "Un tipo de malware oculto",
+                    "El uso de un pretexto para obtener información confidencial",
+                    "Un tipo de suplantación web",
+                    "Una forma de cifrado inseguro"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál es una técnica común usada en pretexting?",
+                options: [
+                    "Falsos archivos adjuntos",
+                    "Correos con enlaces falsos",
+                    "Suplantación de un empleado o proveedor",
+                    "Malware por Bluetooth"
+                ],
+                correctAnswer: 2
+            },
+            {
+                question: "¿Qué hace que el pretexting sea efectivo?",
+                options: [
+                    "Que usa redes sociales",
+                    "Que se basa en la confianza y una historia creíble",
+                    "Que se transmite por SMS",
+                    "Que utiliza virus automatizados"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál de estas acciones es incorrecta si sospechas de pretexting?",
+                options: [
+                    "Validar la identidad del remitente",
+                    "Compartir tu contraseña por teléfono",
+                    "Reportar el intento al departamento de seguridad",
+                    "Cortar la comunicación y verificar internamente"
+                ],
+                correctAnswer: 1
+            },
+            {
+                question: "¿Cuál es una medida para prevenir el pretexting?",
+                options: [
+                    "Compartir claves con compañeros",
+                    "Tener contraseñas simples",
+                    "Verificar cualquier solicitud inusual directamente con la fuente oficial",
+                    "Instalar cualquier programa que te pidan"
+                ],
+                correctAnswer: 2
+            }
+        ]
+    }
 ]
 
 // Función para mostrar una pantalla y ocultar las demás
@@ -356,8 +414,8 @@ function displayCurrentLesson() {
   const lessonContent = document.querySelector(".lesson-content")
   const category = categories[currentCategory]
   const lesson = category.lessons[currentLesson]
-
-  lessonContent.innerHTML = `
+    
+    lessonContent.innerHTML = `
         <img src="${category.icon}" alt="${category.name} Icon" class="category-icon">
         <h3>${lesson.title}</h3>
         <p>${lesson.content}</p>
@@ -371,13 +429,13 @@ function displayCurrentLesson() {
 function completeLesson() {
   const category = categories[currentCategory]
   currentLesson++
-
-  if (currentLesson >= category.lessons.length) {
+    
+    if (currentLesson >= category.lessons.length) {
     progress.categories[category.id].completed = true
     showTest(category.id)
-  } else {
+    } else {
     displayCurrentLesson()
-  }
+    }
 }
 
 // Función para mostrar la prueba de una categoría
@@ -396,8 +454,8 @@ function displayCurrentQuestion() {
   const questionContainer = document.querySelector(".question-container")
   const category = categories[currentCategory]
   const question = category.questions[currentQuestion]
-
-  questionContainer.innerHTML = `
+    
+    questionContainer.innerHTML = `
         <h3>${question.question}</h3>
         <div class="options">
             ${question.options
@@ -416,7 +474,7 @@ function checkAnswer(selectedIndex) {
   const category = categories[currentCategory]
   const question = category.questions[currentQuestion]
 
-  if (selectedIndex === question.correctAnswer) {
+    if (selectedIndex === question.correctAnswer) {
     // Otorgar 20 puntos por respuesta correcta
     userPoints += 20
     progress.categories[category.id].score += 20
@@ -425,7 +483,7 @@ function checkAnswer(selectedIndex) {
 
     // Mostrar mensaje de respuesta correcta
     showMessage("¡Correcto! +20 puntos", "success")
-  } else {
+    } else {
     showMessage("Incorrecto. Intenta de nuevo", "error")
   }
 
@@ -436,9 +494,9 @@ function checkAnswer(selectedIndex) {
   if (currentQuestion < category.questions.length - 1) {
     currentQuestion++
     displayCurrentQuestion()
-  } else {
+        } else {
     completeTest(category.id)
-  }
+        }
 }
 
 // Función para completar la prueba
@@ -465,7 +523,9 @@ function updateProgress() {
 
   const progressHTML = `
         <div class="level-info">
-            <h3>Nivel ${currentLevel.level} - ${currentLevel.title} ${currentLevel.icon}</h3>
+            <div class="level-header">
+                <h3>Nivel ${currentLevel.level} - ${currentLevel.title} ${currentLevel.icon}</h3>
+            </div>
             <div class="level-progress">
                 <div class="level-progress-bar" style="width: ${progressPercentage}%"></div>
             </div>
@@ -473,19 +533,6 @@ function updateProgress() {
                 <span>${userPoints} puntos</span>
                 <span>${nextLevel.points - userPoints} puntos para el siguiente nivel</span>
             </div>
-        </div>
-        <div class="categories-progress">
-            <h3>Progreso por categoría:</h3>
-            ${Object.entries(progress.categories)
-              .map(
-                ([category, data]) => `
-                <div class="category-progress">
-                    <span>${categories.find((c) => c.id === category).name}</span>
-                    <span>${data.score} puntos</span>
-                </div>
-            `,
-              )
-              .join("")}
         </div>
     `
 
@@ -543,23 +590,19 @@ function showMessage(text, type) {
 
 // Función para mostrar la pantalla de selección de cuestionarios
 function showTests() {
-  showScreen("categories-screen")
-  updateNavTitle("Cuestionarios")
-  const categoriesScreen = document.getElementById("categories-screen")
+  showScreen('categories-screen');
+  updateNavTitle("Cuestionarios");
+  const categoriesScreen = document.getElementById('categories-screen');
   categoriesScreen.innerHTML = `
         <h2>Cuestionarios Disponibles</h2>
         <div class="categories-grid">
-            ${categories
-              .map(
-                (category) => `
+            ${categories.map(category => `
                 <div class="category-card" onclick="showTest('${category.id}')">
                     <img src="${category.icon}" alt="${category.name}">
                     <h3>${category.name}</h3>
                     <p>Prueba tus conocimientos</p>
                 </div>
-            `,
-              )
-              .join("")}
+            `).join('')}
         </div>
     `
 }
@@ -609,14 +652,14 @@ function updateNavTitle(title) {
   document.getElementById("current-screen-title").textContent = title
 }
 
-// Añadir la función displayCategories que faltaba
+// Función para mostrar las categorías
 function displayCategories() {
   const categoriesScreen = document.getElementById("categories-screen")
   categoriesScreen.innerHTML = `
     <h2>CATEGORÍAS</h2>
     <div class="categories-grid">
       <div class="category-card" onclick="showLessons('phishing')">
-        <img src="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" alt="Phishing">
+        <img src="phishing.png" alt="Phishing">
         <h3>Phishing</h3>
         <p>Ataques por correo electrónico</p>
       </div>
@@ -626,7 +669,7 @@ function displayCategories() {
         <p>Ataques por llamada telefónica</p>
       </div>
       <div class="category-card" onclick="showLessons('smishing')">
-        <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Smishing">
+        <img src="texto.png" alt="Smishing">
         <h3>Smishing</h3>
         <p>Ataques por mensaje de texto</p>
       </div>
@@ -635,66 +678,6 @@ function displayCategories() {
         <h3>Pretexting</h3>
         <p>Creación de escenarios falsos</p>
       </div>
-      <div class="category-card" onclick="showLessons('baiting')">
-        <img src="https://cdn-icons-png.flaticon.com/512/1548/1548682.png" alt="Baiting">
-        <h3>Baiting</h3>
-        <p>Ataques con señuelos</p>
-      </div>
-    </div>
-  `
-}
-
-// Modificar la función showProgress para actualizar el título
-function showProgress() {
-  showScreen("progress-screen")
-  updateNavTitle("Progreso")
-
-  const progressScreen = document.getElementById("progress-screen")
-  const detailedProgress = document.getElementById("detailed-progress")
-
-  // Calcular estadísticas
-  const completedCategories = Object.values(progress.categories).filter((cat) => cat.completed).length
-  const totalCategories = Object.keys(progress.categories).length
-  const completionPercentage = Math.round((completedCategories / totalCategories) * 100)
-
-  // Mostrar nivel actual
-  const currentLevel = userLevels[progress.currentLevel - 1]
-
-  detailedProgress.innerHTML = `
-    <div class="progress-overview">
-      <h3>Nivel ${currentLevel.level}: ${currentLevel.title} ${currentLevel.icon}</h3>
-      <p>Has completado ${completedCategories} de ${totalCategories} categorías (${completionPercentage}%)</p>
-      <p>Puntos totales: ${progress.totalScore}</p>
-    </div>
-    
-    <h3 class="progress-subtitle">Progreso por categoría:</h3>
-    <div class="categories-progress-detail">
-      ${Object.entries(progress.categories)
-        .map(([categoryId, data]) => {
-          const category = categories.find((c) => c.id === categoryId)
-          const maxScore = category.questions.length * 20
-          const percentage = Math.round((data.score / maxScore) * 100) || 0
-
-          return `
-          <div class="category-progress-item">
-            <div class="category-progress-header">
-              <img src="${category.icon}" alt="${category.name}" class="category-mini-icon">
-              <h4>${category.name}</h4>
-              <span class="category-status ${data.completed ? "completed" : "pending"}">
-                ${data.completed ? "Completado" : "Pendiente"}
-              </span>
-            </div>
-            <div class="category-progress-bar">
-              <div class="category-progress-fill" style="width: ${percentage}%"></div>
-            </div>
-            <div class="category-progress-stats">
-              <span>${data.score} puntos</span>
-              <span>${percentage}% completado</span>
-            </div>
-          </div>
-        `
-        })
-        .join("")}
     </div>
   `
 }
@@ -759,3 +742,118 @@ categories[3].lessons.push({
     "Usar canales seguros para la comunicación de información confidencial",
   ],
 })
+
+// Función para iniciar sesión
+function login() {
+    const username = document.getElementById('username').value;
+    const password = document.getElementById('password').value;
+
+    const user = users.find(u => u.username === username && u.password === password);
+
+    if (user) {
+        currentUser = user;
+        localStorage.setItem('currentUser', JSON.stringify(user));
+        document.getElementById('logout-button').style.display = 'block';
+        showMenu();
+        showMessage('¡Bienvenido ' + username + '!', 'success');
+    } else {
+        showMessage('Usuario o contraseña incorrectos', 'error');
+    }
+}
+
+// Función para registrar usuario
+function register() {
+    const username = document.getElementById('reg-username').value;
+    const email = document.getElementById('reg-email').value;
+    const password = document.getElementById('reg-password').value;
+    const confirmPassword = document.getElementById('reg-confirm-password').value;
+
+    // Validaciones
+    if (!username || !email || !password || !confirmPassword) {
+        showMessage('Por favor, completa todos los campos', 'error');
+        return;
+    }
+
+    if (password !== confirmPassword) {
+        showMessage('Las contraseñas no coinciden', 'error');
+        return;
+    }
+
+    if (users.some(u => u.username === username)) {
+        showMessage('El usuario ya existe', 'error');
+        return;
+    }
+
+    // Crear nuevo usuario
+    const newUser = {
+        username,
+        email,
+        password,
+        progress: {
+            categories: {
+                phishing: { completed: false, score: 0 },
+                vishing: { completed: false, score: 0 },
+                smishing: { completed: false, score: 0 },
+                pretexting: { completed: false, score: 0 },
+            },
+            totalScore: 0,
+            currentLevel: 1
+        }
+    };
+
+    // Guardar usuario
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+    
+    // Iniciar sesión automáticamente
+    currentUser = newUser;
+    localStorage.setItem('currentUser', JSON.stringify(newUser));
+    
+    // Mostrar botón de cerrar sesión
+    document.getElementById('logout-button').style.display = 'block';
+    
+    // Mostrar mensaje y redireccionar al menú
+    showMessage('¡Registro exitoso! Bienvenido ' + username, 'success');
+    setTimeout(() => {
+        showMenu();
+    }, 1000);
+}
+
+// Función para cerrar sesión
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('currentUser');
+    document.getElementById('logout-button').style.display = 'none';
+    showScreen('home-screen');
+    updateNavTitle('Inicio');
+    showMessage('Sesión cerrada', 'success');
+}
+
+// Función para alternar entre login y registro
+function toggleAuthForm() {
+    const homeScreen = document.getElementById('home-screen');
+    const registerScreen = document.getElementById('register-screen');
+    
+    if (homeScreen.style.display !== 'none') {
+        homeScreen.style.display = 'none';
+        registerScreen.style.display = 'flex';
+        updateNavTitle('Registro');
+    } else {
+        homeScreen.style.display = 'flex';
+        registerScreen.style.display = 'none';
+        updateNavTitle('Inicio');
+    }
+}
+
+// Verificar si hay una sesión activa al cargar la página
+document.addEventListener('DOMContentLoaded', () => {
+    const savedUser = localStorage.getItem('currentUser');
+    if (savedUser) {
+        currentUser = JSON.parse(savedUser);
+        document.getElementById('logout-button').style.display = 'block';
+        showMenu();
+    } else {
+    showScreen('home-screen');
+    }
+    updateNavTitle('Inicio');
+}); 

@@ -2,38 +2,78 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Prevención de Ataques de Ingeniería Social</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="app-container">
+        <!-- Barra de navegación -->
         <div class="nav-bar">
             <button id="back-button" class="nav-back-btn" onclick="goBack()">
                 <img src="https://cdn-icons-png.flaticon.com/512/271/271220.png" alt="Atrás" class="back-icon">
             </button>
             <h3 id="current-screen-title">Inicio</h3>
-        </div>
-        <!-- Pantalla de inicio -->
-        <div class="screen" id="home-screen">
-            <h1>PREVENCIÓN<br>DE ATAQUES<br>DE INGENIERÍA<br>SOCIAL</h1>
-            <div class="icon-container">
-                <img src="https://cdn-icons-png.flaticon.com/512/4489/4489655.png" alt="Hacker Icon" class="hacker-icon">
-                <div class="password-box">
-                    <span class="dots">•••••</span>
-                    <img src="https://cdn-icons-png.flaticon.com/512/483/483408.png" alt="Lock Icon" class="lock-icon">
-                </div>
-            </div>
-            <button class="start-btn" onclick="showMenu()">COMENZAR</button>
+            <button id="logout-button" class="nav-logout-btn" onclick="logout()" style="display: none;">
+                <i class="fas fa-sign-out-alt"></i>
+            </button>
         </div>
 
-        <!-- Menú principal -->
+        <!-- Pantallas de la aplicación -->
+        <div class="screen" id="home-screen">
+            <div class="auth-container">
+                <h1>PREVENCIÓN DE ATAQUES DE INGENIERÍA SOCIAL</h1>
+                <img src="https://cdn-icons-png.flaticon.com/512/4489/4489655.png" alt="Security Icon" class="security-icon">
+                <div class="auth-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="username" placeholder="Usuario" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="password" placeholder="Contraseña" required>
+                    </div>
+                    <button class="auth-btn login-btn" onclick="login()">INICIAR SESIÓN</button>
+                    <p class="auth-switch">¿No tienes cuenta? <a href="#" onclick="toggleAuthForm()">Regístrate</a></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="screen" id="register-screen" style="display: none;">
+            <div class="auth-container">
+                <h1>REGISTRO</h1>
+                <img src="https://cdn-icons-png.flaticon.com/512/4489/4489655.png" alt="Security Icon" class="security-icon">
+                <div class="auth-form">
+                    <div class="input-group">
+                        <i class="fas fa-user"></i>
+                        <input type="text" id="reg-username" placeholder="Usuario" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-envelope"></i>
+                        <input type="email" id="reg-email" placeholder="Correo electrónico" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="reg-password" placeholder="Contraseña" required>
+                    </div>
+                    <div class="input-group">
+                        <i class="fas fa-lock"></i>
+                        <input type="password" id="reg-confirm-password" placeholder="Confirmar contraseña" required>
+                    </div>
+                    <button class="auth-btn register-btn" onclick="register()">REGISTRARSE</button>
+                    <p class="auth-switch">¿Ya tienes cuenta? <a href="#" onclick="toggleAuthForm()">Inicia sesión</a></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú principal (único con fondo blanco) -->
         <div class="screen" id="menu-screen" style="display: none;">
-            <h2>MENÚ</h2>
+            <h2>MENÚ PRINCIPAL</h2>
             <div class="menu-options">
                 <button class="menu-btn" onclick="showCategories()">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2991/2991106.png" alt="Lessons">
-                    Aprender
+                    <img src="https://cdn-icons-png.flaticon.com/512/3078/3078941.png" alt="Cuestionarios">
+                    Cuestionarios
                 </button>
                 <button class="menu-btn" onclick="showProgress()">
                     <img src="https://cdn-icons-png.flaticon.com/512/8003/8003392.png" alt="Progress">
@@ -52,7 +92,7 @@
             <h2>CATEGORÍAS</h2>
             <div class="categories-grid">
                 <div class="category-card" onclick="showLessons('phishing')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/2138/2138508.png" alt="Phishing">
+                    <img src="phishing.png" alt="Phishing">
                     <h3>Phishing</h3>
                     <p>Ataques por correo electrónico</p>
                 </div>
@@ -62,7 +102,7 @@
                     <p>Ataques por llamada telefónica</p>
                 </div>
                 <div class="category-card" onclick="showLessons('smishing')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/3059/3059518.png" alt="Smishing">
+                    <img src="texto.png" alt="Smishing">
                     <h3>Smishing</h3>
                     <p>Ataques por mensaje de texto</p>
                 </div>
@@ -70,11 +110,6 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/1077/1077114.png" alt="Pretexting">
                     <h3>Pretexting</h3>
                     <p>Creación de escenarios falsos</p>
-                </div>
-                <div class="category-card" onclick="showLessons('baiting')">
-                    <img src="https://cdn-icons-png.flaticon.com/512/1548/1548682.png" alt="Baiting">
-                    <h3>Baiting</h3>
-                    <p>Ataques con señuelos</p>
                 </div>
             </div>
             <button class="back-btn" onclick="showMenu()">VOLVER</button>

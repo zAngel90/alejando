@@ -1,0 +1,273 @@
+Información del archivo: nuevo.pptx
+--------------------------------------------------
+
+Diapositiva 1:
+--------------------
+Texto: ¿Qué es el Phishing?
+Texto: El phishing es un método de engaño en línea que utiliza técnicas de ingeniería social para hacer que las personas entreguen información personal, financiera o confidencial. Los atacantes se hacen pasar por organizaciones legítimas a través de correos electrónicos, sitios web, mensajes o plataformas digitales.
+
+Diapositiva 2:
+--------------------
+Texto: Cómo prevenir el phishing
+
+Diapositiva 3:
+--------------------
+Texto: Email Phishing (Correo Electrónico)
+Texto: Es el tipo más tradicional. Se basa en enviar correos electrónicos falsos a miles de personas con el fin de robar información o instalar malware.
+Ejemplo:
+"Tu cuenta de Netflix ha sido suspendida. Haz clic aquí para reactivarla."El enlace dirige a una página falsa idéntica al sitio real.
+
+Diapositiva 4:
+--------------------
+Texto: Cómo identificarlo:
+Texto: Ortografía o gramática deficiente
+Solicitudes de información sensible (contraseñas, tarjetas)
+Ofertas demasiado buenas para ser verdad
+Remitente extraño o con errores
+Urgencia o amenazas implícitas
+
+Diapositiva 5:
+--------------------
+Texto: Ejemplo
+Texto: De: soporte@micr0soft-servicio.comAsunto: Acción urgente requeridaCuerpo: Estimado cliente, detectamos actividad sospechosa. Haga clic en el siguiente enlace para verificar su cuenta.Verificar ahora
+
+Análisis:
+El dominio es falso (con un 0 en vez de "o").
+Se crea urgencia.
+Se pide hacer clic en un enlace no verificado.
+
+Diapositiva 6:
+--------------------
+Texto: CUESTIONARIO
+
+Diapositiva 7:
+--------------------
+Texto: ¿Cuál es el objetivo principal del phishing por correo electrónico?
+Texto: a) Instalar software legítimob) Robar datos personales o financieros ✅c) Eliminar archivos del sistemad) Bloquear correos legítimos
+
+Diapositiva 8:
+--------------------
+Texto: ¿Qué archivo adjunto es más probable que contenga malware en un correo de phishing?
+Texto: a) .pngb) .docm ✅c) .txtd) .mp3
+
+Diapositiva 9:
+--------------------
+Texto: ¿Cuál de los siguientes es un indicio común de un correo electrónico de phishing?
+Texto: a) Un diseño profesionalb) Un mensaje urgente que pide acción inmediata ✅c) Un remitente conocido con dirección válidad) Ortografía y gramática perfectas
+
+Diapositiva 10:
+--------------------
+Texto: ¿Qué técnica consiste en falsificar la dirección del remitente para que parezca confiable?
+Texto: a) Ingeniería inversab) Spoofing ✅c) Whalingd) Ransomware
+
+Diapositiva 11:
+--------------------
+Texto: ¿Qué se recomienda hacer antes de hacer clic en un enlace dentro de un correo?
+Texto: a) Descargar primero el archivob) Confirmar con el remitentec) Pasar el cursor sobre el enlace para ver la URL real ✅d) Actualizar el navegador
+
+Diapositiva 12:
+--------------------
+Texto: ¿Qué es el Vishing?
+Texto: El vishing (voice phishing) es una forma de ingeniería social en la que el atacante utiliza llamadas telefónicas para engañar a la víctima y obtener información confidencial, como contraseñas, datos bancarios o códigos de verificación.
+
+Diapositiva 13:
+--------------------
+Texto: Cómo Funciona el Vishing
+Texto: El atacante llama haciéndose pasar por una figura de autoridad (banco, proveedor, policía, etc.).
+Utiliza el miedo, la urgencia o la confianza para que la víctima actúe rápidamente.
+Pide información privada o dirige a la víctima a realizar una acción insegura (como transferir dinero o instalar software).
+
+Diapositiva 14:
+--------------------
+Texto: Técnicas Comunes de Vishing
+
+Diapositiva 15:
+--------------------
+Texto: Cómo Prevenir el Vishing
+Texto: Nunca proporciones datos personales o bancarios por teléfono si no iniciaste la llamada.
+Desconfía de llamadas inesperadas que pidan información urgente.
+Verifica la identidad del interlocutor colgando y llamando directamente al número oficial de la entidad.
+Usa apps de bloqueo de llamadas sospechosas o spam.
+
+Diapositiva 16:
+--------------------
+Texto: Ejemplo
+Texto: Escenario:
+Recibes una llamada de un supuesto representante del banco.
+Llamada (simulada):“Hola, le llamamos del Departamento de Seguridad del Banco Nacional. Hemos detectado un intento sospechoso de retiro de dinero desde su cuenta. Para protegerla, necesitamos verificar su identidad. Por favor, confírmenos su número de tarjeta y el código de seguridad de tres dígitos que aparece en el reverso.”
+Elementos engañosos en este ejemplo:
+Tono de urgencia: te hacen sentir que tu dinero está en peligro.
+Suplantación de entidad: dicen ser del banco para ganarse tu confianza.
+Solicitud de datos sensibles: piden información que nunca debe compartirse por teléfono.
+
+Diapositiva 17:
+--------------------
+Texto: CUESTIONARIO
+
+Diapositiva 18:
+--------------------
+Texto: ¿Qué es el vishing?
+Texto: a) Un ataque por mensajes SMSb) Una técnica de hackeo físicoc) Un intento de obtener información personal mediante llamadas telefónicas ✅d) Un ataque informático mediante virus
+
+Diapositiva 19:
+--------------------
+Texto: ¿Qué técnica común se utiliza en el vishing?
+Texto: a) Enviar enlaces maliciososb) Suplantar números de teléfono para parecer legítimos ✅c) Escanear redes WiFid) Enviar archivos adjuntos peligrosos
+
+Diapositiva 20:
+--------------------
+Texto: ¿Cuál de estas frases es típica en una llamada de vishing?
+Texto: a) “¿Cómo está su día hoy?”b) “Su cuenta será suspendida si no verifica sus datos ahora mismo.” ✅c) “Gracias por su compra.”d) “Nos gustaría hacerle una encuesta.”
+
+Diapositiva 21:
+--------------------
+Texto: ¿Qué debes hacer si sospechas que una llamada es fraudulenta?
+Texto: a) Proporcionar información solo si el número es localb) Seguir las instrucciones rápidamentec) Colgar y llamar a la institución por sus canales oficiales ✅d) Grabar la llamada y subirla a redes sociales
+
+Diapositiva 22:
+--------------------
+Texto: ¿Por qué el vishing es efectivo?
+Texto: a) Porque utiliza malware avanzadob) Porque explota vulnerabilidades de softwarec) Porque utiliza la voz para generar confianza y presión psicológica ✅d) Porque requiere altos conocimientos técnicos
+
+Diapositiva 23:
+--------------------
+Texto: ¿Qué es el Smishing?
+Texto: El smishing (SMS phishing) es una técnica de ingeniería social en la que los atacantes envían mensajes de texto (SMS) falsos con el fin de engañar al usuario para que proporcione datos personales, acceda a enlaces maliciosos o descargue software malicioso.
+
+Diapositiva 24:
+--------------------
+Texto: ¿Cómo Funciona el Smishing?
+Texto: El atacante envía un SMS simulando ser una entidad confiable (banco, tienda, operador móvil, etc.).
+
+El mensaje contiene:
+Un enlace malicioso.
+Una solicitud de llamada o respuesta con información personal.
+
+Si el usuario cae, puede:
+Entregar información privada.
+Descargar malware.
+Ser redirigido a un sitio de phishing.
+
+Diapositiva 25:
+--------------------
+Texto: Técnicas Comunes en Smishing
+
+Diapositiva 26:
+--------------------
+Texto: Cómo Prevenir el Smishing
+Texto: No hagas clic en enlaces de mensajes sospechosos.
+Nunca proporciones datos personales por SMS.
+Bloquea y reporta números sospechosos.
+Instala un antivirus que detecte amenazas móviles.
+Verifica la información directamente con la empresa desde su sitio oficial o app.
+
+Diapositiva 27:
+--------------------
+Texto: Ejemplo
+Texto: Mensaje recibido en el celular:
+“BBVA: Detectamos actividad sospechosa en tu cuenta. Por seguridad, verifica tu identidad aquí:http://bbva-seguridad-info.com”
+
+¿Qué tiene de sospechoso este mensaje?
+El dominio web es falso (no es el sitio oficial de BBVA).
+Usa lenguaje urgente y te presiona a actuar.
+El mensaje llegó por SMS, canal que el banco normalmente no utiliza para este tipo de acciones.
+
+Diapositiva 28:
+--------------------
+Texto: CUESTIONARIO
+
+Diapositiva 29:
+--------------------
+Texto: ¿Qué es el smishing?
+Texto: a) Un ataque por llamada telefónicab) Un tipo de malware que borra archivosc) Un intento de fraude a través de mensajes SMS ✅d) Un ataque mediante correo electrónico
+
+Diapositiva 30:
+--------------------
+Texto: ¿Cuál es una señal típica de un mensaje de smishing?
+Texto: a) Enlace con dominio oficialb) Redacción profesionalc) Enlace acortado o sospechoso ✅d) Mensaje enviado desde tu propio número
+
+Diapositiva 31:
+--------------------
+Texto: ¿Qué buscan obtener los atacantes con el smishing?
+Texto: a) Archivos multimediab) Información personal o financiera ✅c) Acceso a redes WiFid) Licencias de software
+
+Diapositiva 32:
+--------------------
+Texto: ¿Qué acción NO se recomienda ante un mensaje sospechoso?
+Texto: a) Eliminar el mensajeb) Contactar a la empresa desde su sitio oficialc) Hacer clic en el enlace para verificar ✅d) Reportar el número como spam
+
+Diapositiva 33:
+--------------------
+Texto: ¿Qué medida ayuda a prevenir el smishing?
+Texto: a) Ignorar todos los SMSb) Descargar todo lo que se recibac) Usar apps de detección de SMS maliciosos ✅d) Responder con "NO" al mensaje
+
+Diapositiva 34:
+--------------------
+Texto: ¿Qué es el Pretexting?
+Texto: El pretexting es una técnica de ingeniería social en la que el atacante crea una historia falsa (pretexto) para engañar a la víctima y hacer que revele información confidencial o realice una acción específica.
+A diferencia del phishing o smishing, el pretexting se basa más en la construcción de confianza y en la manipulación psicológica mediante una historia convincente.
+
+Diapositiva 35:
+--------------------
+Texto: ¿Cómo Funciona el Pretexting?
+
+Diapositiva 36:
+--------------------
+Texto: Técnicas Comunes en Pretexting
+Texto: Suplantación de identidad profesional:Fingir ser del departamento de TI, recursos humanos o un proveedor confiable.
+Pretextos legales o administrativos:Por ejemplo, un supuesto “auditor” que necesita acceso a documentos internos.
+Falsas situaciones de emergencia:Inventar que se perdió una contraseña o que hay un fallo urgente que deben solucionar.
+Uso de datos reales:Para parecer creíbles, los atacantes a menudo ya conocen información parcial (como nombres o correos internos).
+
+Diapositiva 37:
+--------------------
+Texto: Cómo Prevenir el Pretexting
+
+Diapositiva 38:
+--------------------
+Texto: Ejemplo
+Texto: Escenario:Un empleado recibe una llamada de alguien que dice ser del departamento de TI de la empresa.
+
+Llamada simulada:
+“Hola, soy Javier del equipo de tecnología. Estamos haciendo mantenimiento al sistema de acceso remoto. ¿Podrías confirmarme tu usuario y contraseña para verificar la configuración?”
+
+Qué tiene de sospechoso:
+El pretexto suena técnico y creíble, pero no se debería solicitar contraseñas por teléfono.
+Usa lenguaje profesional para ganar confianza.
+Se presenta como alguien interno de la organización.
+
+Diapositiva 39:
+--------------------
+Texto: CUESTIONARIO
+
+Diapositiva 40:
+--------------------
+Texto: ¿Qué es el pretexting?
+Texto: a) Un tipo de malware ocultob) El uso de un pretexto para obtener información confidencial ✅c) Un tipo de suplantación webd) Una forma de cifrado inseguro
+
+Diapositiva 41:
+--------------------
+Texto: ¿Cuál es una técnica común usada en pretexting?
+Texto: a) Falsos archivos adjuntosb) Correos con enlaces falsosc) Suplantación de un empleado o proveedor ✅d) Malware por Bluetooth
+
+Diapositiva 42:
+--------------------
+Texto: ¿Qué hace que el pretexting sea efectivo?
+Texto: a) Que usa redes socialesb) Que se basa en la confianza y una historia creíble ✅c) Que se transmite por SMSd) Que utiliza virus automatizados
+
+Diapositiva 43:
+--------------------
+Texto: ¿Cuál de estas acciones es incorrecta si sospechas de pretexting?
+Texto: a) Validar la identidad del remitenteb) Compartir tu contraseña por teléfono ✅c) Reportar el intento al departamento de seguridadd) Cortar la comunicación y verificar internamente
+
+Diapositiva 44:
+--------------------
+Texto: ¿Cuál es una medida para prevenir el pretexting?
+Texto: a) Compartir claves con compañerosb) Tener contraseñas simplesc) Verificar cualquier solicitud inusual directamente con la fuente oficial ✅d) Instalar cualquier programa que te pidan
+
+Diapositiva 45:
+--------------------
+Texto: Sistema de puntaje
+Texto: 20 puntos por preguntas correctas
+
+Niveles de usuario
